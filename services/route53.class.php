@@ -658,7 +658,7 @@ class AmazonRoute53 extends CFRuntime
 			throw new Route53_Exception('Name parameter is REQUIRED.');
 		}
 
-        $name = strtolower($this->_trailing_dot($name));
+        $name = strtolower(self::trailing_dot($name));
 
         $objResponse = $this->list_hosted_zone();
         if ($objResponse->isOK())
@@ -673,7 +673,7 @@ class AmazonRoute53 extends CFRuntime
         return null;
 	}
 
-    private function _trailing_dot($string)
+    public static function trailing_dot($string)
     {
         if (strrpos($string, '.', -1) !== strlen($string)-1)
         {
